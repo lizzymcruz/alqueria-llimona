@@ -69,7 +69,7 @@ function home(L) {
 <div class="wrap hero-copy"><p class="eyebrow" data-hero-fade>${t.heroEyebrow}</p>${split(t.heroH, 'h1', 'class="display"')}
 <blockquote data-hero-fade><p>${t.heroQuote}</p><footer>${t.heroBy}</footer></blockquote></div>
 <div class="hero-media"><div class="hero-img" data-hero-media>${pic('hero', t.heroAlt, { priority: true, w: 1920, h: 1280 })}</div></div>
-<div class="wrap hero-bar">${bookingBar(site, L)}<ul class="perks" role="list">${t.perks.map(p => `<li>${p}</li>`).join('')}</ul></div>
+<div class="wrap hero-bar">${bookingBar(site, L)}<ul class="perks" role="list">${t.perks.map(p => `<li><span class="pk-ic">${L_.ICON.check}</span>${p}</li>`).join('')}</ul></div>
 </section>
 
 <section class="two wrap" aria-label="${t.roomsTile} · ${t.orchardTile}" id="orchard">
@@ -83,7 +83,7 @@ ${[['rooms-tile', t.roomsTile, t.roomsTileP, t.roomsTileL, 'rooms', 'A doorway i
 <section class="stay" aria-labelledby="stay-h"><div class="wrap stay-head"><div><p class="eyebrow">${t.stayEyebrow}</p>${split(t.stayH, 'h2', 'id="stay-h" class="display-m"')}</div><a class="link" href="${site.href(L, 'rooms')}">${t.allRooms}</a></div>
 <div class="rail"><ul class="rail-track wrap" role="list" data-stagger>${R.map(r => `
 <li class="room-card"><a href="${site.href(L, 'room-' + r.id)}"><div class="reveal-img rc-img">${pic(r.img, r.alt, { sizes: '(min-width: 1024px) 30vw, 80vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div>
-<div class="rc-meta"><div><h3>${r.name}</h3><p>${r.meta}</p></div><p class="price">${t.from} €${r.price}</p></div></a></li>`).join('')}</ul></div></section>
+<div class="rc-meta"><div><h3>${r.name}</h3>${L_.metaList(r.meta, ['door', 'area', 'bed'])}</div><p class="price">${t.from} €${r.price}</p></div></a></li>`).join('')}</ul></div></section>
 
 <section class="iv" aria-labelledby="iv-h"><div class="iv-bg" data-parallax="0.2">${pic('j-orange', '', { w: 1920, h: 1446 })}</div><div class="iv-shade"></div>
 <div class="wrap iv-in"><p class="eyebrow on-dark">${t.ivEyebrow}</p>${split(t.ivH, 'h2', 'id="iv-h" class="display-m"')}
@@ -132,7 +132,7 @@ function roomPage(L, r) {
 <h2 class="eyebrow">${t.goodToKnow}</h2><ul class="gtk" role="list">${t.gtk.map(([h, p]) => `<li><b>${h}</b><p>${p}</p></li>`).join('')}</ul></div>
 <aside class="room-card-book" aria-label="${t.bookRoom}"><p class="rb-price">${t.from} €${r.price} <small>${t.nightForTwo}</small></p><p class="rb-inc">${t.breakfastIncl}</p>
 ${bookingBar(site, L, { room: r.id, price: r.price, watch: true })}<ul role="list" class="rb-perks">${t.bookBetter.map(b => `<li>${blossom('bullet')}${b}</li>`).join('')}</ul></aside></section>
-<section class="wrap others"><p class="eyebrow">${t.alsoHouse}</p>${split(t.otherRooms, 'h2', 'class="display-m"')}<ul class="others-grid" role="list" data-stagger>${others.map(o => `<li class="room-card"><a href="${site.href(L, 'room-' + o.id)}"><div class="rc-img">${pic(o.img, o.alt, { sizes: '(min-width: 900px) 30vw, 100vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div><div class="rc-meta"><div><h3>${o.name}</h3><p>${o.meta}</p></div><p class="price">${t.from} €${o.price}</p></div></a></li>`).join('')}</ul></section>
+<section class="wrap others"><p class="eyebrow">${t.alsoHouse}</p>${split(t.otherRooms, 'h2', 'class="display-m"')}<ul class="others-grid" role="list" data-stagger>${others.map(o => `<li class="room-card"><a href="${site.href(L, 'room-' + o.id)}"><div class="rc-img">${pic(o.img, o.alt, { sizes: '(min-width: 900px) 30vw, 100vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div><div class="rc-meta"><div><h3>${o.name}</h3>${L_.metaList(o.meta, ['door', 'area', 'bed'])}</div><p class="price">${t.from} €${o.price}</p></div></a></li>`).join('')}</ul></section>
 ${stickyBar(site, L, { label: r.name, value: '€' + r.price + ' ' + t.perNight, cta: t.reserve })}`;
   const roomLD = { '@context': 'https://schema.org', '@type': 'HotelRoom', name: r.name, description: r.intro, image: `${site.domain}/assets/img/${r.img}-1280.webp`, floorSize: { '@type': 'QuantitativeValue', value: parseInt(r.size), unitCode: 'MTK' }, occupancy: { '@type': 'QuantitativeValue', maxValue: r.max }, bed: r.bed, containedInPlace: { '@id': site.domain + '/#hotel' },
     offers: { '@type': 'Offer', price: r.price, priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: site.domain + site.href(L, 'book') + '?room=' + r.id } };
