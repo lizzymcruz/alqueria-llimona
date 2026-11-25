@@ -296,3 +296,4 @@ html.a-contrast .site-footer,html.a-contrast .demo-strip{background:#000}
  .others-grid .rc-img{aspect-ratio:4/3}
 }
 @media (max-width:820px){.room-main{padding-top:2rem}.room-copy>.eyebrow:first-child{margin-bottom:.5rem}.room-copy>p{margin-top:1rem}}
+@media (max-width:1024px){.facts-grid div{padding:.9rem 1rem .5rem 0}}
