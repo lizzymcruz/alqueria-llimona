@@ -21,7 +21,7 @@ site.href = (L, k) => { const [key, hash] = k.split('#'); return (L === 'en' ? '
 const petals = [0, 72, 144, 216, 288].map(a => `<ellipse cx="60" cy="37" rx="10.5" ry="20" transform="rotate(${a} 60 60)"/>`).join('');
 const stamens = [0, 45, 90, 135, 180, 225, 270, 315].map(a => { const r = a * Math.PI / 180, x = 60 + Math.sin(r) * 15, y = 60 - Math.cos(r) * 15; return `<line x1="60" y1="60" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.9" fill="currentColor"/>`; }).join('');
 const blossom = (cls = '', ring = false) => `<svg class="${cls}" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">${ring ? '<circle cx="60" cy="60" r="57"/><circle cx="60" cy="60" r="53" stroke-width=".7"/>' : ''}${petals}${stamens}<circle cx="60" cy="60" r="5" fill="#F2D35B"/></svg>`;
-const seal = (cls = '') => `<svg class="${cls}" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98" fill="#F2D35B"/><circle cx="100" cy="100" r="68" fill="#FBFBF9" stroke="#233A8C" stroke-width=".8"/><defs><path id="sealp" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs><text font-family="Hanken Grotesk,sans-serif" font-size="12.5" font-weight="500" letter-spacing="4.2" fill="#233A8C"><textPath href="#sealp">ALQUERIA LLIMONA · ALBORAIA · EST. 1874 ·</textPath></text><g transform="translate(46 46) scale(.9)" fill="none" stroke="#233A8C" stroke-width="1.3">${petals}${stamens}<circle cx="60" cy="60" r="5" fill="#233A8C"/></g></svg>`;
+const seal = (cls = '') => `<svg class="${cls}" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98" fill="#F2D35B"/><circle cx="100" cy="100" r="68" fill="#FBFBF9" stroke="#233A8C" stroke-width=".8"/><defs><path id="sealp" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs><text font-family="Hanken Grotesk,sans-serif" font-size="12.5" font-weight="500" fill="#233A8C"><textPath href="#sealp" textLength="510" lengthAdjust="spacing">ALQUERIA LLIMONA · ALBORAIA · EST. 1874 ·</textPath></text><g transform="translate(46 46) scale(.9)" fill="none" stroke="#233A8C" stroke-width="1.3">${petals}${stamens}<circle cx="60" cy="60" r="5" fill="#233A8C"/></g></svg>`;
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg>';
 
 /* ---------- header and footer ---------- */
@@ -74,15 +74,14 @@ function home(L) {
 
 <section class="two wrap" aria-label="${t.roomsTile} · ${t.orchardTile}" id="orchard">
 ${[['rooms-tile', t.roomsTile, t.roomsTileP, t.roomsTileL, 'rooms', 'A doorway into a calm modern bedroom with wooden walls'], ['orchard', t.orchardTile, t.orchardTileP, t.orchardTileL, 'home#questions', 'An arched doorway opening onto a garden of orange trees']].map(([img, h, p, l, k, alt]) => `
-<article class="tile"><a href="${site.href(L, k)}" class="tile-link"><div class="reveal-img tile-img">${pic(img, alt, { sizes: '(min-width: 900px) 45vw, 100vw', w: 1280, h: 1600 })}</div>
-<span class="round-btn" aria-hidden="true">${ARROW}</span><h2 class="h3">${h}</h2></a><p>${p}</p><a class="link" href="${site.href(L, k)}">${l}</a></article>`).join('')}
+<article class="tile"><a href="${site.href(L, k)}" class="tile-link"><div class="reveal-img tile-img">${pic(img, alt, { sizes: '(min-width: 900px) 45vw, 100vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div><h2 class="h3">${h}</h2></a><p>${p}</p><a class="link" href="${site.href(L, k)}">${l}</a></article>`).join('')}
 </section>
 
 <section class="statement" aria-labelledby="st-h"><div class="statement-img" data-open>${pic('j-window', '', { w: 1920, h: 1618 })}<div class="overlay"></div></div>
 <div class="statement-copy wrap">${blossom('band-mark')}${split(t.statement, 'h2', 'id="st-h" class="display-m"')}<p data-reveal>${t.statementP}</p></div></section>
 
 <section class="stay" aria-labelledby="stay-h"><div class="wrap stay-head"><div><p class="eyebrow">${t.stayEyebrow}</p>${split(t.stayH, 'h2', 'id="stay-h" class="display-m"')}</div><a class="link" href="${site.href(L, 'rooms')}">${t.allRooms}</a></div>
-<div class="rail" data-rail><ul class="rail-track wrap" data-rail-track role="list">${R.map(r => `
+<div class="rail"><ul class="rail-track wrap" role="list" data-stagger>${R.map(r => `
 <li class="room-card"><a href="${site.href(L, 'room-' + r.id)}"><div class="reveal-img rc-img">${pic(r.img, r.alt, { sizes: '(min-width: 1024px) 30vw, 80vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div>
 <div class="rc-meta"><div><h3>${r.name}</h3><p>${r.meta}</p></div><p class="price">${t.from} €${r.price}</p></div></a></li>`).join('')}</ul></div></section>
 
