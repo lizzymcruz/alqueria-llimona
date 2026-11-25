@@ -257,3 +257,41 @@ html.a-contrast .site-footer,html.a-contrast .demo-strip{background:#000}
  .bbar .btn{min-height:3.25rem}
 }
 @media (max-width:820px){.perks{flex-direction:column;align-items:flex-start;gap:.6rem;width:fit-content;margin-inline:auto;letter-spacing:.12em}}
+
+/* journal: more air between rows */
+.jr-grid{row-gap:2.5rem}
+.jr-grid figcaption{margin-top:.6rem}
+
+/* rooms row scrollbar (tablet and phone): thin brand-coloured line inside the page margins */
+@media (max-width:1023px){
+ .rail{scrollbar-width:thin;scrollbar-color:var(--c-accent) rgba(35,58,140,.12);padding-bottom:1.75rem}
+ .rail::-webkit-scrollbar{height:4px}
+ .rail::-webkit-scrollbar-track{background:rgba(35,58,140,.12);margin-inline:var(--gut);border-radius:4px}
+ .rail::-webkit-scrollbar-thumb{background:var(--c-accent);border-radius:4px}
+ .rail::-webkit-scrollbar-button{display:none;width:0;height:0}
+}
+
+/* phones and small tablets: shorter images, tighter items, bigger gaps between items */
+@media (max-width:820px){
+ .two{gap:3.5rem;padding:4.5rem 0}
+ .tile{gap:.5rem}
+ .tile-link{gap:.85rem}
+ .tile-img{aspect-ratio:4/3}
+ .tile .round-btn{width:3rem;height:3rem;bottom:1rem;right:1rem}
+ .statement{min-height:min(70svh,34rem)}
+ .rc-img{aspect-ratio:1/1}
+ .room-card a{gap:.75rem}
+ .stay-head{margin-bottom:2rem}
+ .iv-list{gap:2.25rem}
+ .her-img .reveal-img{aspect-ratio:4/3}
+ .her-copy>p{margin:1rem 0 1.5rem}
+ .tb-img{min-height:15rem}
+ .tb-copy{gap:1rem}
+ .jr-grid{gap:2rem 1rem}
+ .jr-img{aspect-ratio:1/1}
+ .rooms-list{gap:4.5rem}
+ .rl-img{aspect-ratio:4/3}
+ .rl-copy{gap:.85rem}
+ .others-grid{gap:2.75rem}
+ .others-grid .rc-img{aspect-ratio:4/3}
+}
