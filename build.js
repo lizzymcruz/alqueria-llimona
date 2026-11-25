@@ -21,7 +21,21 @@ site.href = (L, k) => { const [key, hash] = k.split('#'); return (L === 'en' ? '
 const petals = [0, 72, 144, 216, 288].map(a => `<ellipse cx="60" cy="37" rx="10.5" ry="20" transform="rotate(${a} 60 60)"/>`).join('');
 const stamens = [0, 45, 90, 135, 180, 225, 270, 315].map(a => { const r = a * Math.PI / 180, x = 60 + Math.sin(r) * 15, y = 60 - Math.cos(r) * 15; return `<line x1="60" y1="60" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.9" fill="currentColor"/>`; }).join('');
 const blossom = (cls = '', ring = false) => `<svg class="${cls}" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">${ring ? '<circle cx="60" cy="60" r="57"/><circle cx="60" cy="60" r="53" stroke-width=".7"/>' : ''}${petals}${stamens}<circle cx="60" cy="60" r="5" fill="#F2D35B"/></svg>`;
-const seal = (cls = '') => `<svg class="${cls}" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98" fill="#F2D35B"/><circle cx="100" cy="100" r="68" fill="#FBFBF9" stroke="#233A8C" stroke-width=".8"/><defs><path id="sealp" d="M100,100 m-78.6,0 a78.6,78.6 0 1,1 157.2,0 a78.6,78.6 0 1,1 -157.2,0"/></defs><text font-family="Hanken Grotesk,sans-serif" font-size="12.5" font-weight="500" fill="#233A8C"><textPath href="#sealp" textLength="492" lengthAdjust="spacing">ALQUERIA LLIMONA · ALBORAIA · EST. 1874 ·&#160;</textPath></text><g transform="translate(46 46) scale(.9)" fill="none" stroke="#233A8C" stroke-width="1.3">${petals}${stamens}<circle cx="60" cy="60" r="5" fill="#233A8C"/></g></svg>`;
+/* Seal lettering: every glyph placed on its own at a measured angle, so the gaps are even
+   all the way round and the capitals sit exactly in the middle of the yellow ring (radius 83). */
+const ringText = (str = 'ALQUERIA LLIMONA · ALBORAIA · EST. 1874 · ', r = 83, size = 12.5) => {
+  const w = (c) => ({ ' ': .55, '·': .55, '.': .45, I: .55, '1': .75, M: 1.2, Q: 1.1, O: 1.1 })[c] || 1;
+  const total = [...str].reduce((a, c) => a + w(c), 0);
+  let acc = 0;
+  const capHalf = size * 0.35; /* half the cap height, to centre capitals on the ring line */
+  return `<g font-family="Hanken Grotesk,sans-serif" font-size="${size}" font-weight="500" fill="#233A8C" text-anchor="middle">${[...str].map(c => {
+    const mid = acc + w(c) / 2; acc += w(c);
+    if (c === ' ') return '';
+    const a = (mid / total) * 360;
+    return `<text x="100" y="${(100 - r + capHalf).toFixed(2)}" transform="rotate(${a.toFixed(2)} 100 100)">${c}</text>`;
+  }).join('')}</g>`;
+};
+const seal = (cls = '') => `<svg class="${cls}" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98" fill="#F2D35B"/><circle cx="100" cy="100" r="68" fill="#FBFBF9" stroke="#233A8C" stroke-width=".8"/>${ringText()}<g transform="translate(46 46) scale(.9)" fill="none" stroke="#233A8C" stroke-width="1.3">${petals}${stamens}<circle cx="60" cy="60" r="5" fill="#233A8C"/></g></svg>`;
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg>';
 
 /* ---------- header and footer ---------- */
