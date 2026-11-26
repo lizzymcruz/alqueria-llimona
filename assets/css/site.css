@@ -301,3 +301,10 @@ html.a-contrast .site-footer,html.a-contrast .demo-strip{background:#000}
 @media (max-width:1024px){.facts-grid div{padding:.9rem 1rem .5rem 0}}
 /* room cards: one fact per line so every card lines up the same */
 .rc-meta .meta-ic{flex-direction:column;gap:.35rem}
+/* room cards: price next to the name, large enough to compare at a glance */
+.rc-meta{grid-template-columns:minmax(0,1fr)}
+.rc-top{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem 1rem;flex-wrap:wrap}
+.rc-meta .price{margin:0;display:flex;align-items:baseline;gap:.3rem;letter-spacing:0;text-transform:none;font-size:inherit;white-space:nowrap}
+.rc-meta .price small{font-size:.8rem;color:var(--c-muted)}
+.rc-meta .price b{font-weight:500;font-size:1.3rem;line-height:1;color:var(--c-ink)}
+.rc-meta .meta-ic{margin-top:.6rem}
