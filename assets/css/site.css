@@ -124,8 +124,9 @@ a:hover .round-btn{background:var(--c-accent);color:#fff;transform:translateY(-2
 @keyframes spin{to{transform:rotate(360deg)}}
 .her-copy>p{color:var(--c-muted);margin:1.5rem 0 2rem;max-width:34rem}
 .timeline{list-style:none;padding:0}
-.timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1rem;padding:1rem 0;border-top:1px solid var(--c-line)}
-.timeline b{font-weight:400;font-size:1.3rem;color:var(--c-accent-text)}
+.timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1rem;align-items:baseline;padding:1rem 0;border-top:1px solid var(--c-line)}
+.timeline b{font-family:var(--f-head);font-weight:400;font-size:1.4rem;line-height:1;color:var(--c-accent-text)}
+.timeline p{margin:0}
 .timeline p{color:var(--c-muted);font-size:.95rem}
 @media (max-width:900px){.her-grid{grid-template-columns:1fr}.her-seal{right:1rem;width:8rem}}
 
@@ -298,3 +299,5 @@ html.a-contrast .site-footer,html.a-contrast .demo-strip{background:#000}
 .room-copy>.eyebrow:first-child{margin-bottom:.5rem}.room-copy>p{margin-top:1rem}
 .room-main{padding-top:clamp(2rem,4vw,3.5rem)}
 @media (max-width:1024px){.facts-grid div{padding:.9rem 1rem .5rem 0}}
+/* room cards: one fact per line so every card lines up the same */
+.rc-meta .meta-ic{flex-direction:column;gap:.35rem}
