@@ -209,7 +209,7 @@ figure:hover .jr-img img{transform:scale(1.05)}
 .gtk p{color:var(--c-muted);font-size:.9rem}
 .room-card-book{position:sticky;top:6rem;background:#fff;border:1px solid var(--c-line);padding:1.75rem;box-shadow:0 24px 50px -28px rgba(22,25,43,.3)}
 .rb-price{font-size:2rem;letter-spacing:-.02em}.rb-price small{font-size:.9rem;color:var(--c-muted);letter-spacing:0}
-.rb-inc{display:inline-block;background:var(--c-highlight);font-size:.82rem;font-weight:500;padding:.35rem .7rem;margin:.75rem 0 1.25rem}
+.rb-inc{display:inline-block;background:var(--c-highlight);color:var(--c-ink);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.5;padding:.45rem .7rem;border-radius:var(--r-tag);margin:.75rem 0 1.25rem}
 .room-card-book .bbar{grid-template-columns:1fr 1fr;box-shadow:none}
 .room-card-book .bbar .bf:nth-child(2){border-right:0}
 .room-card-book .bbar .bf{border-bottom:1px solid var(--c-line)}
