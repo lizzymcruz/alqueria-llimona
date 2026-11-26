@@ -86,9 +86,9 @@ function home(L) {
 <div class="wrap hero-bar">${bookingBar(site, L)}<ul class="perks" role="list">${t.perks.map(p => `<li><span class="pk-ic">${L_.ICON.check}</span>${p}</li>`).join('')}</ul></div>
 </section>
 
-<section class="two wrap" aria-label="${t.roomsTile} · ${t.orchardTile}" id="orchard">
+<section class="two wrap" aria-label="${t.roomsTile} · ${t.orchardTile}" id="orchard" data-stagger>
 ${[['rooms-tile', t.roomsTile, t.roomsTileP, t.roomsTileL, 'rooms', 'A doorway into a calm modern bedroom with wooden walls'], ['orchard', t.orchardTile, t.orchardTileP, t.orchardTileL, 'home#questions', 'An arched doorway opening onto a garden of orange trees']].map(([img, h, p, l, k, alt]) => `
-<article class="tile"><a href="${site.href(L, k)}" class="tile-link"><div class="reveal-img tile-img">${pic(img, alt, { sizes: '(min-width: 900px) 45vw, 100vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div><h2 class="h3">${h}</h2></a><p>${p}</p><a class="link" href="${site.href(L, k)}">${l}</a></article>`).join('')}
+<article class="tile"><a href="${site.href(L, k)}" class="tile-link"><div class="tile-img">${pic(img, alt, { sizes: '(min-width: 900px) 45vw, 100vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div><h2 class="h3">${h}</h2></a><p>${p}</p><a class="link" href="${site.href(L, k)}">${l}</a></article>`).join('')}
 </section>
 
 <section class="statement" aria-labelledby="st-h"><div class="statement-img" data-open>${pic('j-window', '', { w: 1920, h: 1618 })}<div class="overlay"></div></div>
@@ -96,7 +96,7 @@ ${[['rooms-tile', t.roomsTile, t.roomsTileP, t.roomsTileL, 'rooms', 'A doorway i
 
 <section class="stay" aria-labelledby="stay-h"><div class="wrap stay-head"><div><p class="eyebrow">${t.stayEyebrow}</p>${split(t.stayH, 'h2', 'id="stay-h" class="display-m"')}</div><a class="link" href="${site.href(L, 'rooms')}">${t.allRooms}</a></div>
 <div class="rail"><ul class="rail-track wrap" role="list" data-stagger>${R.map(r => `
-<li class="room-card"><a href="${site.href(L, 'room-' + r.id)}"><div class="reveal-img rc-img">${pic(r.img, r.alt, { sizes: '(min-width: 1024px) 30vw, 80vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div>
+<li class="room-card"><a href="${site.href(L, 'room-' + r.id)}"><div class="rc-img">${pic(r.img, r.alt, { sizes: '(min-width: 1024px) 30vw, 80vw', w: 1280, h: 1600 })}<span class="round-btn" aria-hidden="true">${ARROW}</span></div>
 <div class="rc-meta"><div><h3>${r.name}</h3>${L_.metaList(r.meta, ['door', 'area', 'bed'])}</div><p class="price">${t.from} €${r.price}</p></div></a></li>`).join('')}</ul></div></section>
 
 <section class="iv" aria-labelledby="iv-h"><div class="iv-bg" data-parallax="0.2">${pic('j-orange', '', { w: 1920, h: 1446 })}</div><div class="iv-shade"></div>
