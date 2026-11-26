@@ -124,7 +124,7 @@ a:hover .round-btn{background:var(--c-accent);color:#fff;transform:translateY(-2
 @keyframes spin{to{transform:rotate(360deg)}}
 .her-copy>p{color:var(--c-muted);margin:1.5rem 0 2rem;max-width:34rem}
 .timeline{list-style:none;padding:0}
-.timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1rem;align-items:baseline;padding:1rem 0;border-top:1px solid var(--c-line)}
+.timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1rem;align-items:center;padding:1rem 0;border-top:1px solid var(--c-line)}
 .timeline b{font-family:var(--f-head);font-weight:400;font-size:1.4rem;line-height:1;color:var(--c-accent-text)}
 .timeline p{margin:0}
 .timeline p{color:var(--c-muted);font-size:.95rem}
