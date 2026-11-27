@@ -308,3 +308,5 @@ html.a-contrast .site-footer,html.a-contrast .demo-strip{background:#000}
 .rc-meta .price small{font-size:.8rem;color:var(--c-muted)}
 .rc-meta .price b{font-weight:500;font-size:1.3rem;line-height:1;color:var(--c-ink)}
 .rc-meta .meta-ic{margin-top:.6rem}
+@media (max-width:1024px){.room-main{grid-template-columns:minmax(0,1fr)}.room-card-book{min-width:0}}
+@media (max-width:400px){.room-card-book{padding:1.1rem}}
